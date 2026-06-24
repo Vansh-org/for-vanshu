@@ -80,13 +80,13 @@
             display: block;
         }
 
+        /* Flexbox handles the positioning and order rendering */
         .btn-container {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 30px; 
             margin-top: 10px;
-            position: relative;
             min-height: 55px;
             width: 100%;
         }
@@ -99,12 +99,14 @@
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         #yesBtn {
             background-color: #ffffff;
             color: #ff4757;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            /* Flex order 1 means left side initially */
+            order: 1; 
         }
 
         #yesBtn:hover {
@@ -115,8 +117,8 @@
         #noBtn {
             background-color: #ff4757;
             color: #ffffff;
-            touch-action: none; /* Prevents scrolling glitch on mobile touch */
-            /* Transitions removed to fix the jumping/glitching behavior */
+            /* Flex order 2 means right side initially */
+            order: 2; 
         }
     </style>
 </head>
@@ -131,25 +133,26 @@
         
         <div class="btn-container">
             <button id="yesBtn" onclick="celebrate()">Yes 💖</button>
-            <button id="noBtn" onmouseover="moveButton()" onpointerenter="moveButton()" onclick="moveButton()">No 😢</button>
+            <button id="noBtn" onmouseenter="swapButtons()" onpointerenter="swapButtons()">No 😢</button>
         </div>
     </div>
 
     <script>
-        function moveButton() {
+        function swapButtons() {
+            const yesBtn = document.getElementById('yesBtn');
             const noBtn = document.getElementById('noBtn');
             
-            // Keeps button completely inside visible viewport borders safely
-            const padding = 60;
-            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+            // Read current flex layout rendering order
+            const yesOrder = window.getComputedStyle(yesBtn).order;
             
-            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
-            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
-            
-            noBtn.style.position = 'fixed';
-            noBtn.style.left = randomX + 'px';
-            noBtn.style.top = randomY + 'px';
+            // Instantly swap CSS flex orders on hover
+            if (yesOrder === "1") {
+                yesBtn.style.order = "2";
+                noBtn.style.order = "1";
+            } else {
+                yesBtn.style.order = "1";
+                noBtn.style.order = "2";
+            }
         }
 
         function celebrate() {
@@ -157,5 +160,4 @@
         }
     </script>
 </body>
-            </html>
-            
+</html>
