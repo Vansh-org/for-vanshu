@@ -80,7 +80,6 @@
             display: block;
         }
 
-        /* Flexbox handles the positioning and order rendering */
         .btn-container {
             display: flex;
             justify-content: center;
@@ -105,7 +104,6 @@
         #yesBtn {
             background-color: #ffffff;
             color: #ff4757;
-            /* Flex order 1 means left side initially */
             order: 1; 
         }
 
@@ -117,7 +115,6 @@
         #noBtn {
             background-color: #ff4757;
             color: #ffffff;
-            /* Flex order 2 means right side initially */
             order: 2; 
         }
     </style>
@@ -129,7 +126,8 @@
         <p class="birthday-wish">✨ Happy Birthday, Vanshu! ✨</p>
         <h1>Will you forever be mine and be my girlfriend? 👑</h1>
         
-        <img src="https://ibb.co" alt="Cute Cat Proposal" class="proposal-img">
+        <!-- Permanent link to the cute cat image -->
+        <img src="https://imgbox.com" alt="Cute Cat Proposal" class="proposal-img">
         
         <div class="btn-container">
             <button id="yesBtn" onclick="celebrate()">Yes 💖</button>
@@ -142,10 +140,8 @@
             const yesBtn = document.getElementById('yesBtn');
             const noBtn = document.getElementById('noBtn');
             
-            // Read current flex layout rendering order
             const yesOrder = window.getComputedStyle(yesBtn).order;
             
-            // Instantly swap CSS flex orders on hover
             if (yesOrder === "1") {
                 yesBtn.style.order = "2";
                 noBtn.style.order = "1";
