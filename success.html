@@ -17,6 +17,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            /* Your background image set here with a fallback color */
             background: #ff7eb3 url('bg.png') no-repeat center center/cover;
             overflow: hidden;
             padding: 20px;
@@ -24,16 +25,17 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            /* Slightly increased opacity to ensure readability over 'bg.png' */
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
             padding: 40px 30px;
             border-radius: 24px;
             text-align: center;
             max-width: 450px;
             width: 100%;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             position: relative;
             z-index: 2;
             animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -51,10 +53,10 @@
         }
 
         p {
-            color: #666;
+            color: #444; /* Darkened slightly for better contrast */
             font-size: 1.2rem;
             line-height: 1.6;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .celebration-emoji {
@@ -115,7 +117,7 @@
             }, duration * 1000);
         }
 
-        // Keep raining hearts forever while she stays on the page
+        // Keep raining hearts forever
         setInterval(createHeart, 150);
     </script>
 
